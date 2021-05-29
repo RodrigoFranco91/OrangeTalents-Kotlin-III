@@ -1,0 +1,13 @@
+Capítulo 05 - Reutilizando e sobrescrevendo métodos
+Nesse capítulo aprendemos:
+
+⦁	A classe Any tem os membros (funcoes): equals, hashCode e toString, logo toda classe também terá. E podeos sobrescrever esses métodos nas nossas classes!
+
+⦁	equals é para comparar se um objeto é igual ao outro, sem ele ao compararmos dois objetos vamos estar comparando o endereço de memória. Com equals poderemos indicar que queremos comparar dois objetos através de suas properties (atributos);
+
+⦁	hashCode gera um valor aleatório para representar (identificar) um objeto. Esse valor sempre será igual para o mesmo objeto!
+
+⦁	Para comparar o objeto através de suas properties temos que sobrescrever os metodos equals e hashcode, na classe do objeto que queremos comparar! O hascode também se faz necessário, pois ele gera um número para identificar um objeto e o valor é sempre igual para o mesmo objeto, logo se dois objetos forem iguais através do Equals (agora a verificação será pelas properties) o seus hash's deverão ser iguais!
+
+⦁	toString vai gerar uma string para descrever um objeto. É comum sobrescrevê-lo para gerar uma string para descrever todas as properties do objeto
+

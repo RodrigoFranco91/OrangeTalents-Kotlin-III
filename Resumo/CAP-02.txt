@@ -1,0 +1,17 @@
+Capítulo 02 - Aplicando a composição entre classes
+Nesse capítulo aprendemos:
+
+⦁	É normal na Orientação a Objetos as classes se relacionarem (composição), por exemplo: Uma conta tem que ter o cpf do titular, o que fazer? Um campo/propertie chamado cpf? Mas já temos o cpf na classe Cliente, então a classe Conta pode ter uma propertie que será a referencia do tipo Cliente;
+
+⦁	Criamos a classe Endereco e em Cliente criamos uma properties do tipo endereco. Só que na classe Cliente ficou assim: "val endereco: Endereco", dessa forma quando criamos um cliente teremos que passar um endereço, se quisermos deixar isso opcional podemos fazer assim na classe cliente: : "val endereco: Endereco()", pois agora quando criamos um Cliente ele já cria um endereco, só que agora vamos cair na obrigação da classe Endereco ter os valores padroes, pois já instanciamos um endereco dentro do cliente, e se quisermos deixar isso opcional? Faremos isso no próximo passo;
+
+⦁	Na classe Endereco os campos foram todos iniciados, do jeito que esta no momento ao criar um  Cliente sem passar um objeto Endereco o cliente terá um endereco "vazio";
+
+
+⦁	Pergunta:Vimos que a herança e a composição são técnicas de relacionamento entre classes. Com base nas vantagens e desvantagens de ambas as abordagens, marque as alternativas corretas:
+Resposta:
+Utilizamos a composição para evitar que uma classe tenha membros desnecessários. & Ao utilizar a composição, a classe não é obrigada a manter os membros da classe que a compõe.
+Justificativa:
+Com a composição somos capazes de fragmentar mais o nosso código em classes que mantêm os membros que fazem sentido, como é o caso do endereço ser uma classe para conter todas as informações de um endereço. &  Com o uso da composição, o relacionamento é a classe ter outra, portanto, ela não vai ter as características da classe que a compõe, e sim a possibilidade de utilizá-la ou não.
+
+

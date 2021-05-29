@@ -1,0 +1,16 @@
+Capítulo 01 - Utilizando Pacote no código
+Nesse capítulo aprendemos:
+
+⦁	Vamos criar o pacote teste e modelo. E mover as classes/arquivos para seus respectivos pacotes;
+
+⦁	Podemos apagar improts que ficam na cor cinza. Atalho para isso: "ctrl + alt + o ";
+
+⦁	Os imports padrões: há diversos imports que vem por padrão em todo arquivo/classe que criamos, basta ver a documentação para isso! Esses imports ficam ocultos para não poluir o visual...
+
+	O nome desses pacotes importados por padrão começam com o nome kotlin, logo não podemos usar esse nome para criar um pacote nosso! Caso use erro ocorrerá na execução do programa!
+
+	Usar um pacote com nome kotlin, como sub-pacote, ou seja, ele estando dentro de outro pacote criado por nós é permetido;
+
+⦁	Podemos dar apelidos aos pacotes, por exemplo: quando queremos usar a string do java e do kotlin no mesmo arquivo, ambas possuem o nome String, mas são de pacotes diferentes, para simplificar no código (ao inves de digitar o nome completo da classe - com pacote), podemos no inicio do arquivo dar um import aos pacotes e dar um apelido para esses pacotes com a palavra "as". Essa técnica resolve o conflito de  import de classes com o mesmo nome, mas que estejam em pacotes diferentes, ao inves de por o full name da classe no codigo podemos dar um apelido a esse fullname;
+
+⦁	O IntelliJ por padrão esconde pacote vázio na hierarquia de pacotes, podemos clicar na engrenagem e desmarcar a opção: Compact Middle Package, pois vamos organizar nosso código ainda mais, criando o pacote br.com.rodrigo.bytebank e dentro desse pacote colocar os outros dois criados. Fazemos isso para garantir que nunca aconteça conflito com nome de classes/arquivos. O fullname das classes passarão a ser br.com.rodrigo.bytebank.X, assim não haverá conflito;

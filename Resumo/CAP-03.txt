@@ -1,0 +1,77 @@
+Capítulo 03 - Variáveis Globais e objects
+Nesse capítulo aprendemos:
+
+⦁	Surgiu uma nova regra de negocio! O cliente quer saber quantas contas temos no nosso banco! Ou seja, a cada instancia criada de Conta devemos somar!
+
+⦁	Podemos criar um objeto conta em qualquer parte do código, como verificar se foi criado uma conta e somar? Podemos por essa soma dentro do contador secundário da classe Conta, mas para executar o construtor secundario temos que passar os atributos do construtor primario... Não queremos fazer isso! Como fazer?
+
+⦁	No kotlin toda classe tem a função init{} e essa  função é executada sempre que criamos um objeto, vamos por nela o contador, mas ao testar vamos ver o resultado sempre 1, por que? O motivo que para cada objeto conta criado, nós criamos um contador diferente! O contador tem que ser único pra todos objetos da classe conta, uma váriavel global!, como fazer isso?
+
+Em cima da funcao main() colocar a variavel global, ficando assim:
+
+var totalContas = 0
+fun main() {
+    testaContasDiferentes()
+    println("Total contas: $totalContas")
+}
+
+⦁	Mas o que fizemos é perigoso, em qualquer lugar do código (todo mundo) pode alterar esse valor, ou seja, é fácil tornar esse valor inconsistente. Como resolver isso?
+
+⦁	Podemos levar essa variavel global para a classe conta, e deixamos o seu set privado, ficando assim:
+	var totalContas = 0
+		private set
+
+	Essa abordagem já melhorou, pois agora só a conta poderá somar nessa variável!
+
+	O problema agora é o seguinte, em um mesmo arquivo podemos criar mais de uma classe, e ao fazermos isso (algo comum em kotlin) cada classe terá seu init{} e eles poderão somar na variável totalContas, pois na verdade o private set  bloqueia a inserção para arquivos externos e agora passamos a ter mais de uma classe no mesmo arquivo... Como resolver isso?
+
+⦁	Vamos usar o Object Declarations para resolver isso!
+Com o Object Declarations vamos poder criar um Singleton! Ou seja, um objeto que durará "eternamente"- enquanto o programa roda!
+
+Esse recurso poderia ficar em qualquer arquivo, mas teriamos o mesmo problema com a variável global, ou seja, qualquer um pode acessar. Poderiamos deixá-lo dentro da classe Conta e deixar seu set privado, assim só funções de conta que estão dentro do mesmo contexto poderia manipulá-lo, mas ainda apresenta falhas, é mais complicado, mas terá como acessá-lo...
+
+Para resolver isso vamos sim deixar na classe Conta, mas vamos utilizar o: "companion"
+
+Vamos fazer, na classe Conta:
+
+	//Aqui estão os properties fora do construtor, ex saldo
+	companion object{ 
+		var total = 0 
+			private set 
+	}
+
+E no init{}:
+
+	init { 
+		total++ 
+	}
+
+Poderiamos dar um nome para esse OBJECT, ficando assim:
+
+	//Aqui estão os properties fora do construtor, ex saldo
+	companion object Contador{ 
+		var total = 0 
+			private set 
+	}
+
+E no init{}:
+
+	init { 
+		Contador.total++ 
+	}
+
+
+⦁	Vamos falar sobre o Object Expression! Com ele podemos  criar objetos anonimos! Objetos sem classe! Esse objeto é como se tivesse classe, ele terá properties, membros (funções), pode herdar classe, pode implementar interface... Exemplo:
+
+
+val objetoAnonimo = object : Autenticavel {
+    val nome = "Rogerio"
+    val cpf = "123.456.123-55"
+    val senha = 1234
+    override fun autentica(senha: Int): Boolean {
+       if(this.senha == senha){
+           return true
+       }
+           return false
+    }
+}

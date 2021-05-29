@@ -1,0 +1,43 @@
+Capítulo 04 - Entendendo a herança base do kotlin
+Nesse capítulo aprendemos:
+
+⦁	Todas as classes do Kotlin herdam da classe Any, logo em um método que tem como parâmetro o tipo Any é possível receber qualquer tipo de parâmetro (polimorfismo);
+
+⦁	Todos os tipo primitivos: Int, Double, etc, são classes, logo herdam Any. Somente na hora da compilação que esses tipos de fato se tornam primitivos, pois serão enviados como copia;
+
+⦁	Todas funçoes possuem retorno, é o Unit. Quando escolhemos o retorno, daí ocorre a substituição, caso contrário será Unit (fica escondido);
+
+⦁	Na hora da execução (runtime) o Any do Kotlin é convertido para Object do Java, mas isso é somente na execução. No código não podemos tratar o Any como Object do Java;
+
+⦁	Quando recebemos um parâmetro do tipo Any, mas temos a certeza de qual tipo esse parâmetro é, podemos fazer o casting para voltar a tratar o parâmetro no seu tipo original. Para fazer o casting basta usar o "as". Exemplo - Voltando a tratar o funcionario como Funcionario:
+
+fun registra(funcionario: Any){
+	Val novoFuncionario: Funcionario = funcionario as Funcionario
+	println(novoFuncionario.saldo)
+}
+
+O trecho anterior funciona! Mas no Kotlin permite fazer isso com mais facilidade, não precisamos de uma nova variável para o casting, ficando assim:
+
+fun registra(funcionario: Any){
+	funcionario as Funcionario
+	println(funcionario .saldo)
+}
+
+⦁	O perigo do método anterior é que podemos enviar qualquer coisa para o método, e ao tentar fazer o casting teremos uma Exception! Logo teriamos que verificar se é possível fazer o casting - vamos usar o "if" e um "is", ficando assim:
+
+fun registra(funcionario: Any){
+	if(funcionario is Funcionario){
+		println(funcionario .saldo)
+	}
+}
+
+Isso se chama Smart Cast!
+
+⦁	Pergunta: Sabemos que todas as classes do Kotlin herdam de Any, sendo assim, todas as classes conseguem usufruir do polimorfismo a partir dessa referência. Por quais motivos evitamos o uso dessa classe para reaproveitar o código a partir do polimorfismo?
+
+Resposta:Não é possível chamar os comportamentos específicos de outra classe. (Ao usarmos a classe Any ficamos restritos aos métodos dela, como é o caso do toString(), equals() e hashCode().) &
+
+Pode apresentar problemas ao enviar um objeto incompatível.(Isso mesmo! Com o uso do Any é necessário o casting para converter o objeto em um tipo esperado.)
+
+
+
